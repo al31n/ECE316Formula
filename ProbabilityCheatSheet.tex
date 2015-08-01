@@ -24,17 +24,12 @@
 	\section{Probability}
 	Probability Rules
 	\newline
-	\begin{tabular}{|c|c|c|}
+	\begin{tabular}{|c|c|c|c|c|}
 		\hline
-		 $\left(\bigcup_{i=1}^{n} E_i\right)^c = \bigcap_{i=1}^{n} E_i$ &  $\left(\bigcap_{i=1}^{n} E_i\right)^c = \bigcup_{i=1}^{n} E_i$ & $P(E^c) = 1 - P(E)$ \\
+		 $\left(\bigcup_{i=1}^{n} E_i\right)^c = \bigcap_{i=1}^{n} E_i$ &  $\left(\bigcap_{i=1}^{n} E_i\right)^c = \bigcup_{i=1}^{n} E_i$ & $P(E^c) = 1 - P(E)$ & $P(E \cup F) = P(E) + P(F) - P(EF)$ & $P(E \vert F) = \frac{P(EF)}{P(F)}$ \\
 		\hline
 	\end{tabular}
 	\newline
-	\begin{tabular}{|c|c|}
-		\hline
-		$P(E \cup F) = P(E) + P(F) - P(EF)$ & $P(E \vert F) = \frac{P(EF)}{P(F)}$ \\
-		\hline
-	\end{tabular}
 	\newline
 	\begin{tabular}{|c|}
 		\hline
@@ -51,7 +46,7 @@
 	\end{tabular}
 	
 	\section{Discrete Random Variable}
-		\begin{tabular}{|c|c|}
+	\begin{tabular}{|c|c|}
 		\hline
 		Probability Mass Function (PMF) & $p_X(a) = P\{X = a\}$\\
 		\hline
@@ -65,6 +60,126 @@
 		\hline
 	\end{tabular}
 	\newline
+	Distributions
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Name & PMF & Mean & Variance\\
+		\hline
+		$Bernoulli(p)$ & $P\{X = 1\} = p$, $P\{X = 0\} = 1 - p$ & $p$ & $p((1-p)$\\
+		\hline
+		$Binomial(n, p)$ & $P\{X = k\} = \binom{n}{k}p^k(1-p)^{n-k}, k = 0,..., n$ & $np$ & $np((1-p)$\\ 
+		\hline
+		$Geometric(p)$ & $P\{X = n\} = p(1-p)^{n-1}, n= 0, 1, 2, ...$ & $\frac{1}{p}$ & $\frac{1-p}{p^2}$\\
+		\hline
+		$Poisson(\lambda)$ & $P\{X = n\} = e^{\lambda}\frac{\lambda^n}{n!}, n = 0, 1,...$ & $\lambda$ & $\lambda$ \\
+		\hline
+		$negbinomial(r, p)$ & $P\{X = r\} = \binom{n - 1}{r - 1}p^r(1- p)^{n-r}, n = r, r + 1, ... $ & $\frac{r}{p}$ & $r\frac{(1 - p)}{p^2}$\\
+		\hline
+		$hypergeometric$ & $P\{X = i\} = \frac{\binom{m}{i}\binom{N - m}{n - i}}{\binom{N}{n}}, i = 0, 1, 2,..., min(n, m)$ & $\frac{nm}{N}$ & $\frac{N - n}{N - 1}np(1 -p) where p = m/N$\\
+		\hline
+	\end{tabular}
+	\section{Continuous Random Variables}
+	 \begin{tabular}{|c|c|}
+		\hline
+		Probability Mass Function (PMF) & $f_X(a) = \frac{1}{\epsilon}P\{a - \frac{\epsilon}{2} < = X <= a + \frac{\epsilon}{2}\}$\\
+		\hline
+		Cumulative Distribution Function (CDF) of X & $F_X(a) = P\{X <= a\} = \int_{-\infty}^{a} p_X(a)dx$\\
+		\hline
+		$P\{X \in B\} = \int{B}f_X(x)dx$ & $f_X(x) = \frac{d}{dx}F_X(x)$\\
+		\hline
+		Expected Value & $E[X] = \int_{-\infty}^{\infty} xf_X(x)$ \\
+		\hline
+		For any function of $g$ & $E[g(X)] = \int_{-\infty}^{\infty} g(x)f_X(x)$\\
+		\hline
+		$Var(X) = E[X^2] - (E[X])^2$ & $SD(X) = \sqrt{Var(X)}$ \\ & $Var(aX + b) = a^2Var(X)$ \\
+		\hline
+	\end{tabular}
+	\newline
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Name & PMF & CDF & Mean & Variance\\
+		\hline
+		$uniform(a, b)$ 
+			& $f(x) = \begin{cases} \frac{1}{b - a} & \text{if } a < x < b \\  0 & \text{othewrise}\end{cases}$  
+			& $F(x) = \begin{cases} 0 & x <= a \\ \frac{x -a}{b -a} & \text{if } a < x < b \\ 1 & x >= a \end{cases} $
+			& $\frac{a + b}{2}$ 
+			& $\frac{(b - a)^2}{12}$\\
+		\hline
+			$Exponential(\lambda)$ 
+			& $f(x) = \begin{cases} \lambda e^{-\lambda x} & \text{if } x >= 0\\  0 & \text{othewrise}\end{cases}$  
+			& $F(x) = 1 - e^{-\lambda x} \text{   if } a >= 0$
+			& $\frac{1}{\lambda}$ & $\frac{1}{\lambda^2}$ \\
+		\hline
+			$Normal(\mu, \sigma^2)$ 
+			& $f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/2\sigma^2}$
+			& $\phi(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^x e^{-u^2/2}du \text{   *Use normal table}$
+			& $\mu$
+			&$\sigma^2$\\
+		\hline
+	\end{tabular}
+	\newline
+	For any normal random variable $X$ with parameters $(\mu, \sigma^2)$, $Z = \frac{X - \mu}{\sigma}$ is the standardized normal random variable.
+	\newline
+	\underline{DeMoivere-Laplace Limit Theorem:} If $S_n$ denotes the number of successes that occur when n independent trials, each resulting in asuccess with probability p, are performed then, for any a < b, $P\{a <= \frac{S_n -np}{\sqrt{np(1 -p)}} <= b\} -> \phi(b) - \phi(a)$
+	\newline 
+	\underline{Distribution of a Function of a RV: } $f_Y(y) = f_X[g^{-1}(y)] \vert{\frac{d}{dy}g^{-1}(y)}\vert \text{  if } y = g(x) \text{ for some } x$
+	\section{Jointly Distributed Random Variables}
+	\underline{Note: } Replace summation with integration for continuous
+	\newline
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Joint CDF & $f_{XY}(a,b) = P\{X = a, Y= b\}$ & Joint CDF & $F_{XY}(a,b) = P\{X <= a, Y <= b\}$\\
+		\hline
+		Marginal PMF of X & $p_X(a) = \sum_{b}p_{XY}(a,b)$ & Marginal PMF of Y & $p_Y(b) = \sum_{a}p_{XY}(a,b)$ \\
+		\hline
+		Marginal CDF of X &  $F_{XY}(a) = F_{XY}(a,\infty)$ & Marginal CDF of Y & $F_XY(b) = F_{XY}(\infty, b)$ \\
+		\hline
+	\end{tabular}
+	\newline
+	\begin{tabular}{|c|c|}
+		Conditional PMF & $p_{X \vert Y}(x \vert y) = P\{X = x \vert Y = y\} = \frac{P\{X = x, Y = y\}}{P\{Y = y\}} = \frac{p_{XY}(x,y)}{p_Y(y)}$ \\
+		\hline
+		Conditional CDF & $F_{X \vert Y}(x \vert y) = P\{X <= x \vert Y <= y\} = \sum_{a <= x} p_{X \vert Y}(a \vert y) $\\
+		\hline
+		Given Function $g(X,Y)$ & $\sum_{y}\sum_{x}g(x,y)p_{XY}(x,y)$ \\
+		\hline
+		Joint MGF & $M_{XY}(t, t') = E[e^{tX+T' Y}] = \sum_{y}\sum{x}e^{tx+t' y}p_{XY}(x,y)$ \\
+		\hline
+		Conditional Expectation & $E[X \vert Y = y] = \sum_{x}xp_{X \vert Y}(x, y)$ \\ & $E[g(X) \vert Y = y] = \sum_{x}g(x)p_{X \vert Y}(x, y)$\\
+		\hline
+		Expectation of X & $\sum_{y}E[X \vert Y = y]P\{Y = y\}$\\
+		\hline
+	\end{tabular}
+	Conditional Jointly Distributed RV
+	\newline
+	\begin{tabular}{|c|c|c|}
+		\hline
+		$F_{X \vert A}(x) = \frac{F_X(x) - F_X(a)}{F_X(b) - F_X(a)} \text{   if} a <= x < b$ & $f_{X \vert A}(x) = \frac{f_X(x)}{P(A)}$ & $f_{X \vert Y}(x, y) = \frac{f_{XY}(x, y)}{f_Y(y)}$\\
+		\hline
+		$E[X \vert A] = \int_{-\infty}^{\infty}xf_{X \vert A}(x)dx$ & $E[g(X) \vert A] = \int_{-\infty}^{\infty}g(x)f_{X \vert A}(x)dx$  		& $$\\
+		\hline
+	\end{tabular}
 	
+	\underline{Independent Random Variables:} Two random variables $X$ and $Y$ are said to be independent if for every $a$ and $b$ we have $f_{XY}(a, b) = f_{X}(a)f_{Y}(b)$. 
+	\newline
+	\underline{Summation of Independent Random Variables}
+	\begin{tabular}{|c|c|}
+		\hline
+		CMF & $F_{X+Y}(a) = P\{X + Y < = a\}  = \int_{-\infty}^{\infty}F_X(a - y)f_Y(y)dy$\\
+		\hline
+		PDF & $f_{X+Y}(a) = \int_{-\infty}^{\infty}f_X(a - y)f_Y(y)dy$\\
+		\hline
+	\end{tabular}
+	\newline
+	\underline{Jacobian Transformation} (Joint Probability Distribution functions of RV) 
+	\newline
+	\begin{tabular}{|c|c|c|}
+		\hline
+		$f_{Y_1, Y_2}(y_1, y_2) = \frac{f_{X_1, X_2}(x_1, x_2)}{\vert J(x_1, x_2) \vert}$
+		& $J(x_1, x_2) = \begin{vmatrix} \frac{\partial g_1}{\partial x_1} & \frac{\partial g_1}{\partial x_2} \\ \frac{\partial g_2}{\partial x_1} & \frac{\partial g_2}{\partial x_2}\end{vmatrix} = \frac{\partial g_1}{\partial x_1}\frac{\partial g_2}{\partial x_2} - \frac{\partial g_1}{\partial x_2}\frac{\partial g_2}{\partial x_1}  \neq 0$ 
+		& $y_1 = g_1(x_1, x_2)$ and $y_2 = g_2(x_1, x_2)$\\
+		\hline
+	\end{tabular}
 	
+	\section{Expectation}
 \end{document}
