@@ -1,0 +1,70 @@
+\documentclass{article}
+\usepackage[letterpaper, portrait, margin=0.5in]{geometry}
+\usepackage{capt-of}
+\usepackage{amsmath}
+\begin{document}
+	\section{Counting}
+	\begin{tabular}{ |c|c| } 
+		\hline
+		Ordered Sampling with replacement & $n^k$ \\
+		\hline
+		Ordered Sampling without replacement & ${^nP_k} = \frac{n!}{(n-k)!}$\\
+		\hline
+		Unordered Sampling with replacement & $\binom{n}{k} = \frac{n!}{k!(n-k)!}$\\
+		\hline
+		Unordered Sampling with replacement & $\binom{n+k-1}{k} = \binom{n+k-1}{n-1}$\\
+		\hline
+		The Binomial Theorem & $(x+y)^n = \sum{\binom{n}{k}x^ky^{n-k}}$\\
+		\hline
+		The Multinomial Theorem & $(x_1 + x_2 + ... + x_r)^n = \sum\limits_{\substack{(n_1, n_2, ... n_r): \\ n_1 + ... + n_r = n}} \frac{n!}{n_1!n_2!...n_r!}x_1^{n_1}x_2^{n_2}...x_r^{n_r}$\\
+		\hline
+	\end{tabular}
+	\newline
+	There are $\binom{n+k-1}{k-1}$ distinct nonnegative integer-valued vectors $<x_1,..., x_r>$ satisfying $x_1 + ... + x_k = n$
+	\section{Probability}
+	Probability Rules
+	\newline
+	\begin{tabular}{|c|c|c|}
+		\hline
+		 $\left(\bigcup_{i=1}^{n} E_i\right)^c = \bigcap_{i=1}^{n} E_i$ &  $\left(\bigcap_{i=1}^{n} E_i\right)^c = \bigcup_{i=1}^{n} E_i$ & $P(E^c) = 1 - P(E)$ \\
+		\hline
+	\end{tabular}
+	\newline
+	\begin{tabular}{|c|c|}
+		\hline
+		$P(E \cup F) = P(E) + P(F) - P(EF)$ & $P(E \vert F) = \frac{P(EF)}{P(F)}$ \\
+		\hline
+	\end{tabular}
+	\newline
+	\begin{tabular}{|c|}
+		\hline
+		$P(E) = P(EF) + P(EF^c) = P(F)P(E \vert F) + P(F^c)P(E \vert F^c) = P(F)P(E \vert F) + (1 - P(F))P(E \vert F^c)$ \\
+		\hline
+	\end{tabular}
+	\newline
+	\begin{tabular}{|c|c|}
+		\hline
+		Bayes' Theorem & Suppose that $F_1, F_2, ... F_n$ are mutually exclusive events such that $\bigcup_{i=1}^n F_i = S$ (Sample Space), \\ & then $P(F_j \vert E) = \frac{P(EF_j)}{P(E)} = \frac{P(E \vert F_j)P(F_j)}{\sum_{i=1}^n P(E \vert F_i)P(F_i)}$\\
+		\hline
+		Independent Events & Two events are independent if $P(EF) = P(E)P(F)$ \\
+		\hline
+	\end{tabular}
+	
+	\section{Discrete Random Variable}
+		\begin{tabular}{|c|c|}
+		\hline
+		Probability Mass Function (PMF) & $p_X(a) = P\{X = a\}$\\
+		\hline
+		Cumulative Distribution Function (CDF) of X & $F_X(a) = P\left\{X <= a\right\} = \sum_{x<=a} p_X(a)$\\
+		\hline
+		Expected Value & $E[X] = \sum_{x} xp_X(x)$ \\
+		\hline
+		For any function of $g$ & $E[g(X)] = \sum_{x} g(x)p_X(x)$\\
+		\hline
+		$Var(X) = E[X^2] - (E[X])^2$ & $SD(X) = \sqrt{Var(X)}$ \\ & $Var(aX + b) = a^2Var(X)$ \\
+		\hline
+	\end{tabular}
+	\newline
+	
+	
+\end{document}
