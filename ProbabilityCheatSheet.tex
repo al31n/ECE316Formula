@@ -303,17 +303,24 @@
 	$P\{X_n = 1\} = p = 1 - P\{X_n = 0\}$
 	\newline
 	\underline{Counting Process} Given a stochiastic process $N(t)$
-	\begin{itemize}
-		\item $N(0) = 0$
-		\item $N(t) \in \{0, 1, 2,...\}$ for all $t \in [0, \infty)$
-		\item for $0 < s < t$, $N(t) - N(s)$ shows the no. of events in $(s,t]$.
-	\end{itemize}
+	\newline
+	\begin{tabular}{|c|c|c|}
+		\hline 
+		$N(0) = 0$ &
+		$N(t) \in \{0, 1, 2,...\}$ for all $t \in [0, \infty)$ &
+		for $0 < s < t$, $N(t) - N(s)$ shows the no. of events in $(s,t]$.\\
+		\hline
+	\end{tabular}
+	\newline
 	\underline{Poisson Process} Given $\lambda > 0$ , A counting process $N(t), t \in [0, \infty)$ is called a Poisson Process with rate $\lambda$ if the following conditions hold:
-	\begin{itemize}
-		\item $N(0) = 0$
-		\item $N(t)$ has \underline{independent} and \underline{stationary} increments
-		\item The number of arrivals in any interval of length $\tau > 0$ has $poisson(\lambda\tau)$ distribution
-	\end{itemize}
+	\newline
+	\begin{tabular}{|c|}
+		\hline $\to N(0) = 0$ \\ 
+		$\to$ $N(t)$ has \underline{independent} and \underline{stationary} increments \\ 
+		$\to$ The number of arrivals in any interval of length $\tau > 0$ has $poisson(\lambda\tau)$ distribution\\
+		\hline
+	\end{tabular}
+	\newline
 	PMF and Joint PMF
 	\newline
 	\begin{tabular}{|c|c|}
@@ -423,5 +430,40 @@
 		$E[X^2(t)] = \int_{-\infty}{\infty}S_X(f)df$ & $S_X(f) = S_X(-f)$ & $S_Y(f) = S_X(f) \vert H(f) \vert^2 \text{  where H is the input response}$\\
 		\hline
 	\end{tabular}
-	\underline{Cross Correlations}
+	\underline{Independent Processes:} $X(t)$ $Y(t)$ are independent for any time sample of $t_1, .., t_n,$ and $t_1', ..., t_m'$, 
+	\newline
+	$f_{X(t_1), ...,X(t_n),Y(t_1'), ...,Y(t_m' )}(x_1, ..., x_n, y_1, ..., y_m) = f_{X(t_1), ...,X(t_n)}(x_1, ..., x_n,)f_{Y(t_1'), ...,Y(t_m' )}(y_1, ..., y_m)$
+	\newline
+	\underline{Cross Correlation Function:} $R_{XY}(t, \tau) = E[(X(t)Y(t + \tau)]$
+	\newline
+	\underline{Jointly WSSP: } $R_{XY}(t, t + \tau) = R_{XY}(\tau)$ and $R_{XY}(\tau) = R_{XY}(-\tau)$
+	\newline
+	\underline{Cross Spectral Density:} $S_{XY}(f) = \mathcal{F}\{R_{XY}(\tau)\}$
+	\newline
+	\underline{Input-Output Cross Correlation:} When a WSSP $X(t)$ is the input to a LTI filter $h(t)$, the input-output cross correlation is $R_{XY}(t, t + \tau) = R_{XY}(\tau) = \int_{-\infty}^{\infty}h(u)R_X(\tau - u)du$. Both $X(t)$ and $Y(t)$ are jointly wide sense stationary.
+	\newline
+	\underline{Output Autocorrelation:} When a wide stationary process $X(t)$ is the input to a LTI filter $h(t)$, the autocorrelation of the output $Y(t)$ is $R_Y(\tau) = \int_{-\infty}^{\infty}h(-w)R_{XY}(\tau - w)dw$.
+	\newline
+	\underline{Cross Spectral Properties:} Let $X(t)$ be a WSS input to a LTI filter $H(f)$. The input $X(t)$ and output $Y(t)$ satisfy
+	\newline
+	\begin{tabular}{|c|c|} 
+		\hline
+		$S_{XY}(f) = H(f)S_X(f)$ & $S_Y(f) = H(f)S_{XY}(f)$ \\
+		\hline
+	\end{tabular}
+	\newline
+	\underline{Gaussian Process:} $X(t)$ is a Gaussian random process if the joint PDF of $X(t_1,), ..., X(t_k)$ has the multivariate Gaussian density $f_{X(t_1), ... X(t_k)} = \frac{1}{(2\pi)^{k/2}\vert C\vert^{1/2}}\text{exp}\{-\frac{1}{2}(X - \mu x)^{\tau}C^{-1}(X - \mu x)\}$
+	\newline
+	\underline{Theorem:} If $X(t)$ is WSS Gaussian process, then $X(t)$ is a stationary Gaussian processs.
+	\underline{Theorem:} $X(t)$ is a Gaussian RV if $Y = \int_{0}^Tg(t)X(t)dt$ is a Gaussian random variable for every $g(t)$ such that $E[Y^2] < \infty$.
+	\newline
+	\underline{Properties of Gaussian Process:} Passing a stationary Gaussian process $X(t)$ through a linear filter $h(t)$ yields as the output Gaussian random process $Y(t)$ with the following properties,
+	\newline
+	\begin{tabular}{|c|c|c|c|}
+		\hline
+		Mean & $\mu_Y = \mu_XH(0)$ & Autocorrelation & $R_Y(\tau) = \int_{-\infty}^{\infty}h(u)\int_{-\infty}^{\infty}h(v)R_X(\tau + u - v)dvdu$\\
+		\hline
+	\end{tabular}
+	
+	
 \end{document}
