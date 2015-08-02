@@ -56,7 +56,6 @@
 		For any function of $g$ & $E[g(X)] = \sum_{x} g(x)p_X(x)$\\
 		\hline
 		$Var(X) = E[X^2] - (E[X])^2$ & $SD(X) = \sqrt{Var(X)}$ \\ & $Var(aX + b) = a^2Var(X)$ \\
-		\hline
 	\end{tabular}
 	\newline
 	\begin{tabular}{|c|c|c|c|}
@@ -464,6 +463,17 @@
 		Mean & $\mu_Y = \mu_XH(0)$ & Autocorrelation & $R_Y(\tau) = \int_{-\infty}^{\infty}h(u)\int_{-\infty}^{\infty}h(v)R_X(\tau + u - v)dvdu$\\
 		\hline
 	\end{tabular}
-	
+	\newline
+	\underline{White Gaussian Noise Processes}
+	\newline
+	Noise is an unpredictable waveform that we model as stationary Gaussian random process $W(t)$. Noise has no DC component.
+	$E[W(t_t1)] = \mu_W = 0$ and $R_W(\tau) = 0$.
+	\newline
+	\underline{Power Spectral Density of $W(t)$}
+	$S_W(f)$ is constant. The constant is 0 unless $R_W(\tau) = \frac{N_0}{2}\delta(\tau)$. $N_0$ is the the power per unit bandwidth of $W(t)$. 
+	\newline
+	\underline{Average Noise Power:} $E[W^2(t)] = R_W(0) = \infty$
+	\newline
+	\underline{Noise process output:} $Y(t) = \int_{0}^th(t - \tau)W(\tau)d\tau = \text{ Constant}$
 	
 \end{document}
