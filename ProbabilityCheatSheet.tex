@@ -62,9 +62,9 @@
 		\hline
 		Name & PMF & Mean & Variance\\
 		\hline
-		$Bernoulli(p)$ & $P\{X = 1\} = p$, $P\{X = 0\} = 1 - p$ & $p$ & $p((1-p)$\\
+		$Bernoulli(p)$ & $P\{X = 1\} = p$, $P\{X = 0\} = 1 - p$ & $p$ & $p(1-p)$\\
 		\hline
-		$Binomial(n, p)$ & $P\{X = k\} = \binom{n}{k}p^k(1-p)^{n-k}, k = 0,..., n$ & $np$ & $np((1-p)$\\ 
+		$Binomial(n, p)$ & $P\{X = k\} = \binom{n}{k}p^k(1-p)^{n-k}, k = 0,..., n$ & $np$ & $np(1-p)$\\ 
 		\hline
 		$Geometric(p)$ & $P\{X = n\} = p(1-p)^{n-1}, n= 0, 1, 2, ...$ & $\frac{1}{p}$ & $\frac{1-p}{p^2}$\\
 		\hline
@@ -89,7 +89,6 @@
 		For any function of $g$ & $E[g(X)] = \int_{-\infty}^{\infty} g(x)f_X(x)$\\
 		\hline
 		$Var(X) = E[X^2] - (E[X])^2$ & $SD(X) = \sqrt{Var(X)}$ \\ & $Var(aX + b) = a^2Var(X)$ \\
-		\hline
 	\end{tabular}
 	\newline
 	\begin{tabular}{|c|c|c|c|c|}
@@ -148,7 +147,7 @@
 	\newline
 	\begin{tabular}{|c|c|c|}
 		\hline
-		$F_{X \vert A}(x) = \frac{F_X(x) - F_X(a)}{F_X(b) - F_X(a)} \text{   if} a \leq x < b$ & $f_{X \vert A}(x) = \frac{f_X(x)}{P(A)}$ & $f_{X \vert Y}(x, y) = \frac{f_{XY}(x, y)}{f_Y(y)}$\\
+		$F_{X \vert A}(x) = \frac{F_X(x) - F_X(a)}{F_X(b) - F_X(a)} \text{  if } a \leq x < b$ & $f_{X \vert A}(x) = \frac{f_X(x)}{P(A)}$ & $f_{X \vert Y}(x, y) = \frac{f_{XY}(x, y)}{f_Y(y)}$\\
 		\hline
 		$E[X \vert A] = \int_{-\infty}^{\infty}xf_{X \vert A}(x)dx$ & $E[g(X) \vert A] = \int_{-\infty}^{\infty}g(x)f_{X \vert A}(x)dx$  		& $$\\
 		\hline
@@ -263,9 +262,11 @@
 		\hline
 		Standard Normal & $M(t) = e^{t^2/2}$ \\
 		\hline
-		Normal & $exp\{\frac{\sigma^2t^2}{2} + {\mu}t\}$\\
+		Normal & $M(t) = exp\{\frac{\sigma^2t^2}{2} + {\mu}t\}$\\
 		\hline
 	\end{tabular}
+	
+
 	\section{Limit Theorems}
 	\underline{Markov's Inequality:} 
 	\newline If $X$ is a random variable that takes only nonnegative values, then for any value $a > 0$, $P\{X \geq a|\} \leq \frac{E[X]}{a}$
@@ -280,9 +281,12 @@
 	\underline{The Central Limit Theorem}
 	\newline
 	Let $X_1, X_2,...$ be a sequence of iid random variables, each having mean and variance. Then, the distribution of $Z = \frac{X_1 + ... + X_n - n\mu}{\sigma\sqrt{n}}$ tends to the standard normal as $n\to\infty$. That is, for $-\infty < a < \infty$, $P\{Z \leq a\} = \phi(a) \to N(0,1)$ as $n\to\infty$
-	\underline{CLT for Independent Random Variables}
-	\newline
-	Let $X_1, X_2, ...$ be a sequence of independent random variables having respective means and variances $\mu = E[X_i]$, $\sigma_i^2 = Var(X_i)$. If (a) the $X_i$ are uniformly bounded; that is, if for some $M$, $P\{\vert X_i\vert < M\} = 1$ for all $i$, and (b) $\sum_{i = 0}^{\infty}\sigma_i^2 = \infty$, then $P\{\frac{\sum_{i = 1}^n(X_i -\mu_i)}{\sqrt{\sum_{i = 1}^n\sigma_i^2}}\} \to \phi(a)$ as $n \to \infty$.
+%	\underline{CLT for Independent Random Variables}
+%	\newline
+%	Let $X_1, X_2, ...$ be a sequence of independent random variables having respective means and variances $\mu = E[X_i]$, $\sigma_i^2 = Var(X_i)$. If (a) the $X_i$ are uniformly bounded; that is, if for some $M$, $P\{\vert X_i\vert < M\} = 1$ for all $i$, and (b) $\sum_{i = 0}^{\infty}\sigma_i^2 = \infty$, then $P\{\frac{\sum_{i = 1}^n(X_i -\mu_i)}{\sqrt{\sum_{i = 1}^n\sigma_i^2}}\} \to \phi(a)$ as $n \to \infty$.
+	
+	
+	
 	\section{Random Processes}
 	\underline{Definitions}
 	\newline
