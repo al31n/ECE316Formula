@@ -133,9 +133,9 @@ g\vspace{-3em}
 	\\
 	\begin{tabular}{|c|c|c|}
 		\hline
-		$F_{X \vert A}(x) = \frac{F_X(x) - F_X(a)}{F_X(b) - F_X(a)} \text{  if } a \leq x < b$ & $f_{X \vert A}(x) = \frac{f_X(x)}{P(A)} \text{  if A is some event between } a \leq X < b$  & $f_{X \vert Y}(x, y) = \frac{f_{XY}(x, y)}{f_Y(y)}$\\
+		$F_{X \vert A}(x) = \frac{F_X(x) - F_X(a)}{F_X(b) - F_X(a)} \text{  if } a \leq x < b$ & $f_{X \vert A}(x) = \frac{f_X(x)}{P(A)} \text{  if A is } a \leq X < b$  & $f_{X \vert Y}(x, y) = \frac{f_{XY}(x, y)}{f_Y(y)}$\\
 		\hline
-		$E[X \vert A] = \int_{-\infty}^{\infty}xf_{X \vert A}(x)dx$ & $E[g(X) \vert A] = \int_{-\infty}^{\infty}g(x)f_{X \vert A}(x)dx$  		& $$\\
+		$P(E) = \begin{cases} \sum_{y}P(E \vert Y = y)P(Y = y) & \text{if $Y$ is discrete} \\ \int_{-\infty}^{\infty}P(E \vert Y = y)P(Y = y)dy & \text{if $Y$ is cont.}\end{cases}$ & $E[X \vert A] = \int_{-\infty}^{\infty}xf_{X \vert A}(x)dx$ & $E[g(X) \vert A] = \int_{-\infty}^{\infty}g(x)f_{X \vert A}(x)dx$  \\
 		\hline
 	\end{tabular}
 	\\
