@@ -2,147 +2,133 @@
 \usepackage[letterpaper, portrait, margin=0.5in]{geometry}
 \usepackage{capt-of}
 \usepackage{nopageno}
+\usepackage{multicol}
 \usepackage{amsmath}
+\usepackage{vwcol}  
+
+\setlength\parindent{0pt}
+
 \begin{document}
-	\section*{Counting}
-	\begin{tabular}{ |c|c| } 
-		\hline
-		Ordered Sampling with replacement & $n^k$ \\
-		\hline
-		Ordered Sampling without replacement & ${^nP_k} = \frac{n!}{(n-k)!}$\\
-		\hline
-		Unordered Sampling without replacement & $\binom{n}{k} = \frac{n!}{k!(n-k)!}$\\
-		\hline
-		Unordered Sampling with replacement & $\binom{n+k-1}{k} = \binom{n+k-1}{n-1}$\\
-		\hline
-		The Binomial Theorem & $(x+y)^n = \sum{\binom{n}{k}x^ky^{n-k}}$\\
-		\hline
-		The Multinomial Theorem & $(x_1 + x_2 + ... + x_r)^n = \sum\limits_{\substack{(n_1, n_2, ... n_r): \\ n_1 + ... + n_r = n}} \frac{n!}{n_1!n_2!...n_r!}x_1^{n_1}x_2^{n_2}...x_r^{n_r}$\\
-		\hline
-	\end{tabular}
-	\\
+	\begin{multicols}{2}[\section*{Counting}]
+    \begin{tabular}{|c|c|c|}
+     \hline
+     Order: & Matters & Doesn't Matter\\ \hline
+     w/ Replacement & $n^k$ & $\binom{n+k-1}{k} $ \\ \hline
+     wo/ Replacement & ${_nP_k} = \frac{n!}{(n-k)!}$ & $\binom{n}{k} = \frac{n!}{k!(n-k)!}$ \\ \hline
+    \end{tabular}
+    
+    Binomial: $(x+y)^n = \sum{\binom{n}{k}x^ky^{n-k}}$
+    
+    Multinomial:\\*
+    $(x_1 + x_2 + ... + x_r)^n = \sum\limits_{\substack{(n_1, n_2, ... n_r): \\ n_1 + ... + n_r = n}} \frac{n!}{n_1!n_2!...n_r!}x_1^{n_1}x_2^{n_2}...x_r^{n_r}$
+    
 	There are $\binom{n+k-1}{k-1}$ distinct nonnegative integer-valued vectors $<x_1,..., x_r>$ satisfying $x_1 + ... + x_k = n$
-	\section*{Probability}
-	Probability Rules
-	\\
-	\begin{tabular}{|c|c|c|c|c|}
+    \end{multicols}
+  	\vspace{-2em}
+	\begin{multicols}{2}[\section*{Probability}]
+	$\left(\bigcup_{i=1}^{n} E_i\right)^c = \bigcap_{i=1}^{n} E_i$ (DeMorgan's Law) \\
+    $\left(\bigcap_{i=1}^{n} E_i\right)^c = \bigcup_{i=1}^{n} E_i$ (DeMorgan's Law) \\
+    $P(E^c) = 1 - P(E)$ (complement)\\
+    $P(E \cup F) = P(E) + P(F) - P(EF)$ (double counting)\\
+    $P(E \vert F) = \frac{P(EF)}{P(F)}$ (conditional)
+    
+    $P(E) = P(EF) + P(EF^c) = P(F)P(E \vert F) + P(F^c)P(E \vert F^c) = P(F)P(E \vert F) + (1 - P(F))P(E \vert F^c)$\\
+    $P(E) = \sum_{i=1}^n P(E \vert F_i)P(F_i)$ (Law of Total Probability)\\
+    Two events are independent if $P(EF) = P(E)P(F)$
+    
+    \textbf{Bayes' Theorem}: Suppose that $F_1, F_2, ... F_n$ are mutually exclusive events such that $\bigcup_{i=1}^n F_i = S$ (sample space), then $P(F_j \vert E) = \frac{P(EF_j)}{P(E)} = \frac{P(E \vert F_j)P(F_j)}{\sum_{i=1}^n P(E \vert F_i)P(F_i)}$
+    
+    \end{multicols}
+	\vspace{-2em}
+	\section*{Random Variables}    
+    \begin{vwcol}[widths={0.25,0.75},
+ sep=.4cm, justify=flush,rule=0pt]
+    PMF: $p_X(a) = P\{X = a\}$\\
+    CDF: $F_X(a) = P\left\{X \leq a\right\} = \sum_{x\leq a} p_X(a)$\\
+    EV : $E[X] = \sum_{x} xp_X(x)$\\
+    EV of $g(X)$: \\$E[g(X)] = \sum_{x} g(x)p_X(x)$\\
+    $Var(X) = E[X^2] - (E[X])^2$\\
+    $Var(aX + b) = a^2Var(X)$\\
+    $SD(X) = \sqrt{Var(X)}$
+    
+    \begin{tabular}{|c|c|c|c|}
 		\hline
-		 $\left(\bigcup_{i=1}^{n} E_i\right)^c = \bigcap_{i=1}^{n} E_i$ &  $\left(\bigcap_{i=1}^{n} E_i\right)^c = \bigcup_{i=1}^{n} E_i$ & $P(E^c) = 1 - P(E)$ & $P(E \cup F) = P(E) + P(F) - P(EF)$ & $P(E \vert F) = \frac{P(EF)}{P(F)}$ \\
+		Name & PMF & $\mu$ & $Var$ \\
 		\hline
-	\end{tabular}
-	\begin{tabular}{|c|}
-		$P(E) = P(EF) + P(EF^c) = P(F)P(E \vert F) + P(F^c)P(E \vert F^c) = P(F)P(E \vert F) + (1 - P(F))P(E \vert F^c)$ \\
-	\end{tabular}
-	\\
-	\begin{tabular}{|c|c|}
+		$Bern(p)$ & $P\{X = 1\} = p$, $P\{X = 0\} = 1 - p$ & $p$ & $p(1-p)$\\
 		\hline
-		Law of Total Probability & $P(E) = \sum_{i=1}^n P(E \vert F_i)P(F_i)$ \\
+		$Bin(n, p)$ & $P\{X = k\} = \binom{n}{k}p^k(1-p)^{n-k}, k = 0,..., n$ & $np$ & $np(1-p)$\\ 
 		\hline
-		Bayes' Theorem & Suppose that $F_1, F_2, ... F_n$ are mutually exclusive events such that $\bigcup_{i=1}^n F_i = S$ (Sample Space), \\ & then $P(F_j \vert E) = \frac{P(EF_j)}{P(E)} = \frac{P(E \vert F_j)P(F_j)}{\sum_{i=1}^n P(E \vert F_i)P(F_i)}$\\
+		$Geom(p)$ & $P\{X = n\} = p(1-p)^{n-1}, n= 0, 1, 2, ...$ & $\frac{1}{p}$ & $\frac{1-p}{p^2}$\\
 		\hline
-		Independent Events & Two events are independent if $P(EF) = P(E)P(F)$ \\
+		$Pois(\lambda)$ & $P\{X = n\} = e^{\lambda}\frac{\lambda^n}{n!}, n = 0, 1,...$ & $\lambda$ & $\lambda$ \\
 		\hline
-	\end{tabular}
-	
-	\section*{Discrete Random Variable}
-	\begin{tabular}{|c|c|}
+		$NBin(r, p)$ & $P\{X = r\} = \binom{n - 1}{r - 1}p^r(1- p)^{n-r}, n = r, r + 1, ... $ & $\frac{r}{p}$ & $r\frac{(1 - p)}{p^2}$\\
 		\hline
-		Probability Mass Function (PMF) & $p_X(a) = P\{X = a\}$\\
-		\hline
-		Cumulative Distribution Function (CDF) of X & $F_X(a) = P\left\{X \leq a\right\} = \sum_{x\leq a} p_X(a)$\\
-		\hline
-		Expected Value & $E[X] = \sum_{x} xp_X(x)$ \\
-		\hline
-		For any function of $g$ & $E[g(X)] = \sum_{x} g(x)p_X(x)$\\
-		\hline
-		$Var(X) = E[X^2] - (E[X])^2$ & $SD(X) = \sqrt{Var(X)}$ \\ & $Var(aX + b) = a^2Var(X)$ \\
-	\end{tabular}
-	\\
-	\begin{tabular}{|c|c|c|c|}
-		\hline
-		Name & PMF & Mean & Variance\\
-		\hline
-		$Bernoulli(p)$ & $P\{X = 1\} = p$, $P\{X = 0\} = 1 - p$ & $p$ & $p(1-p)$\\
-		\hline
-		$Binomial(n, p)$ & $P\{X = k\} = \binom{n}{k}p^k(1-p)^{n-k}, k = 0,..., n$ & $np$ & $np(1-p)$\\ 
-		\hline
-		$Geometric(p)$ & $P\{X = n\} = p(1-p)^{n-1}, n= 0, 1, 2, ...$ & $\frac{1}{p}$ & $\frac{1-p}{p^2}$\\
-		\hline
-		$Poisson(\lambda)$ & $P\{X = n\} = e^{\lambda}\frac{\lambda^n}{n!}, n = 0, 1,...$ & $\lambda$ & $\lambda$ \\
-		\hline
-		$NegativeBinomial(r, p)$ & $P\{X = r\} = \binom{n - 1}{r - 1}p^r(1- p)^{n-r}, n = r, r + 1, ... $ & $\frac{r}{p}$ & $r\frac{(1 - p)}{p^2}$\\
-		\hline
-		$hypergeometric$ & $P\{X = i\} = \frac{\binom{m}{i}\binom{N - m}{n - i}}{\binom{N}{n}}, i = 0, 1, 2,..., min(n, m)$ & $\frac{nm}{N}$ & $\frac{N - n}{N - 1}np(1 -p) where p = m/N$\\
+		h.g. & $P\{X = i\} = \frac{\binom{m}{i}\binom{N - m}{n - i}}{\binom{N}{n}}$ & $\frac{nm}{N}$ & $\frac{N - n}{N - 1}np(1 -p)$\\
+         & $i = 0, 1, 2,..., min(n, m)$ & & $p = m/N$\\
 		\hline
 	\end{tabular}
-	\section*{Continuous Random Variables}
-	 \begin{tabular}{|c|c|}
+\end{vwcol}
+\vspace{-3em}
+    \begin{vwcol}[widths={0.25,0.75},
+ sep=.4cm, justify=flush,rule=0pt]
+    PDF: $f_X(a) = \frac{1}{\epsilon}P\{a - \frac{\epsilon}{2} < = X \leq a + \frac{\epsilon}{2}\}$\\
+    CDF: $F_X(a) = P\{X \leq a\} = \int_{-\infty}^{a} p_X(a)dx$\\
+    EV: $E[X] = \int_{-\infty}^{\infty} xf_X(x)$\\
+    EV of $g(X)$:\\ $E[g(X)] = \int_{-\infty}^{\infty} g(x)f_X(x)$\\
+    $P\{X \in B\} = \int{B}f_X(x)dx$\\$f_X(x) = \frac{d}{dx}F_X(x)$\newpage
+    
+    \begin{tabular}{|c|c|c|c|c|}
 		\hline
-		Probability Density Function (PDF) & $f_X(a) = \frac{1}{\epsilon}P\{a - \frac{\epsilon}{2} < = X \leq a + \frac{\epsilon}{2}\}$\\
+		Name & PDF & CDF & $\mu$ & $Var$ \\
 		\hline
-		Cumulative Distribution Function (CDF) of X & $F_X(a) = P\{X \leq a\} = \int_{-\infty}^{a} p_X(a)dx$\\
-		\hline
-		$P\{X \in B\} = \int{B}f_X(x)dx$ & $f_X(x) = \frac{d}{dx}F_X(x)$\\
-		\hline
-		Expected Value & $E[X] = \int_{-\infty}^{\infty} xf_X(x)$ \\
-		\hline
-		For any function of $g$ & $E[g(X)] = \int_{-\infty}^{\infty} g(x)f_X(x)$\\
-		\hline
-		$Var(X) = E[X^2] - (E[X])^2$ & $SD(X) = \sqrt{Var(X)}$ \\ & $Var(aX + b) = a^2Var(X)$ \\
-	\end{tabular}
-	\\
-	\begin{tabular}{|c|c|c|c|c|}
-		\hline
-		Name & PDF & CDF & Mean & Variance\\
-		\hline
-		$uniform(a, b)$ 
+		$Uni(a, b)$ 
 			& $f(x) = \begin{cases} \frac{1}{b - a} & \text{if } a < x < b \\  0 & \text{othewrise}\end{cases}$  
 			& $F(x) = \begin{cases} 0 & x \leq a \\ \frac{x -a}{b -a} & \text{if } a < x < b \\ 1 & x \geq a \end{cases} $
 			& $\frac{a + b}{2}$ 
 			& $\frac{(b - a)^2}{12}$\\
 		\hline
-			$Exponential(\lambda)$ 
+			$Expo(\lambda)$ 
 			& $f(x) = \begin{cases} \lambda e^{-\lambda x} & \text{if } x \geq 0\\  0 & \text{othewrise}\end{cases}$  
 			& $F(x) = 1 - e^{-\lambda x} \text{   if } x \geq 0$
 			& $\frac{1}{\lambda}$ & $\frac{1}{\lambda^2}$ \\
 		\hline
-			$Normal(\mu, \sigma^2)$ 
+			$Gamm(a, \lambda)$
+			& $f(x) = \frac{1}{\Gamma (a)}(\lambda x)^a e^{-\lambda x}\frac{1}{x}$
+			& ???
+			& $a/\lambda$
+			&$a/\lambda^2$\\
+		\hline
+			$Norm(\mu, \sigma^2)$
 			& $f(x) = \frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu)^2/2\sigma^2}$
-			& $\phi(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^x e^{-u^2/2}du \text{   *Use normal table}$
+			& $\phi(x) = \frac{1}{\sqrt{2\pi}}\int_{-\infty}^x e^{-u^2/2}du$
 			& $\mu$
 			&$\sigma^2$\\
 		\hline
 	\end{tabular}
-	\\
-	For any normal random variable $X$ with parameters $(\mu, \sigma^2)$, $Z = \frac{X - \mu}{\sigma}$ is the standardized normal random variable.
-	\\
-	\underline{DeMoivere-Laplace Limit Theorem:} If $S_n$ denotes the number of successes that occur when n independent trials, each resulting in asuccess with probability p, are performed then, for any a < b, $P\{a \leq \frac{S_n -np}{\sqrt{np(1 -p)}} \leq b\} -> \phi(b) - \phi(a)$
-	\\
-	\underline{Memoryless RV: } We say that a nonnegative random variable $X$ is $memoryless$ if $P\{X >s + t \vert X > t\} = P\{X > s\}$
-	\\
-	\underline{Distribution of a Function of a RV: } $f_Y(y) = f_X[g^{-1}(y)] \vert{\frac{d}{dy}g^{-1}(y)}\vert \text{  if } y = g(x) \text{ for some } x$
-	\section*{Jointly Distributed Random Variables}
-	\underline{Note: } Replace summation with integration for continuous
-	\\
-	\begin{tabular}{|c|c|c|c|}
-		\hline
-		Joint CDF & $f_{XY}(a,b) = P\{X = a, Y= b\}$ & Joint CDF & $F_{XY}(a,b) = P\{X \leq a, Y \leq b\}$\\
-		\hline
-		Marginal PMF of X & $p_X(a) = \sum_{b}p_{XY}(a,b)$ & Marginal PMF of Y & $p_Y(b) = \sum_{a}p_{XY}(a,b)$ \\
-		\hline
-		Marginal CDF of X &  $F_{XY}(a) = F_{XY}(a,\infty)$ & Marginal CDF of Y & $F_XY(b) = F_{XY}(\infty, b)$ \\
-		\hline
-	\end{tabular}
-	\\
-	\begin{tabular}{|c|c|}
-		Conditional PMF & $p_{X \vert Y}(x \vert y) = P\{X = x \vert Y = y\} = \frac{P\{X = x, Y = y\}}{P\{Y = y\}} = \frac{p_{XY}(x,y)}{p_Y(y)}$ \\
-		\hline
-		Conditional CDF & $F_{X \vert Y}(x \vert y) = P\{X \leq x \vert Y \leq y\} = \sum_{a \leq x} p_{X \vert Y}(a \vert y) $\\
-		\hline
-		Given Function $g(X,Y)$ & $\sum_{y}\sum_{x}g(x,y)p_{XY}(x,y)$ \\
-		\hline
-	\end{tabular}
-	\\
+\end{vwcol}
+\vspace{-6em}
+    \begin{multicols}{2}[\subsection*{Continuous Random Variables}]
+	For any normal random variable $X$ with parameters $(\mu, \sigma^2)$, $Z = \frac{X - \mu}{\sigma}$ is the standardized normal random variable.\\ \\
+	\textbf{De Moivre-Laplace Limit Theorem}: If $S_n$ denotes the number of successes that occur when n independent trials, each resulting in a success with probability p, are performed then, for any $a < b$, $P\{a \leq \frac{S_n -np}{\sqrt{np(1 -p)}} \leq b\} -> \phi(b) - \phi(a)$ \\ \\
+	\textbf{Memoryless RV}: We say that a nonnegative random variable $X$ is \emph{memoryless} if $P\{X >s + t \vert X > t\} = P\{X > s\}$\\ \\
+	\textbf{Distribution of a Function of a RV}: $f_Y(y) = f_X[g^{-1}(y)] \vert{\frac{d}{dy}g^{-1}(y)}\vert \text{  if } y = g(x) \text{ for some } x$
+    \end{multicols}
+g\vspace{-3em}
+	\begin{multicols}{2}[\subsection*{Jointly Distributed Random Variables\footnote{Replace summation with integration for continuous.}}]
+    Joint PDF: $f_{XY}(a,b) = P\{X = a, Y= b\}$\\
+    Conditional PMF: $p_{X \vert Y}(x \vert y) = P\{X = x \vert Y = y\} = \frac{P\{X = x, Y = y\}}{P\{Y = y\}} = \frac{p_{XY}(x,y)}{p_Y(y)}$\\
+    Joint CDF: $F_{XY}(a,b) = P\{X \leq a, Y \leq b\}$\\
+    Conditional CDF: $F_{X \vert Y}(x \vert y) = P\{X \leq x \vert Y \leq y\} = \sum_{a \leq x} p_{X \vert Y}(a \vert y) $
+    \end{multicols}
+    \begin{multicols}{2}
+    Marginal PMF of X: $p_X(a) = \sum_{b}p_{XY}(a,b)$\\
+    Marginal PMF of Y: $p_Y(b) = \sum_{a}p_{XY}(a,b)$\\
+    Marginal CDF of X: $F_{XY}(a) = F_{XY}(a,\infty)$\\
+    Marginal CDF of Y: $F_{XY}(b) = F_{XY}(\infty, b)$
+    \end{multicols}
+	
 	Conditional Jointly Distributed RV
 	\\
 	\begin{tabular}{|c|c|c|}
@@ -176,82 +162,44 @@
 		\hline
 	\end{tabular}
 	
-	\section*{Properties of Expectation}
-	\begin{tabular}{|c|c|c|c|}
-		\hline
-		Joint PMF & $E[g(X, Y)] = \sum_{y}\sum_{x}g(x, y)p(x, y)$ &
-		Joint PDF &  $E[g(X, Y)] = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}g(x, y)p(x, y)dxdyy$\\
-		\hline
-	\end{tabular}
-	\\
-	\begin{tabular}{|c|c|}
-		\hline
-		$E[aX+ b] = aE[X] + b$ & $E[g(X)h(Y)] = E[g(X)]E[h(Y)]$ if $X$ and $Y$ are independent\\
-		\hline
-	\end{tabular}
-	\\
-	\begin{tabular}{|c|c|}
-		\hline
-		$Cov(X, Y) = E[XY] - E[X]E[Y]$ & $Cov(X, Y)  = Cov(Y, X)$\\
-		\hline
-		$Cov(X, X) = Cov(X, X)$ & $Cov(aX,bY) = abCov(X, Y)$\\ 
-		\hline
-		$Cov(\sum_{i=1}^nX_i, \sum_{j=1}^mY_j) = \sum_{i=1}^n\sum_{j=1}^mCov(X_i,Y_j)$  &
-		$Var(\sum_{i = 1}^nX_i) = \sum_{i = 1}^nVar(X_i) + \sum_{i = 1}^n\sum_{j \neq i}Cov(X_i, X_j)$\\
-		\hline
-	\end{tabular}
-	\\
-	$Var(\sum_{i = 1}^nX_i) = \sum_{i = 1}^nVar(X_i)$ if $X1,... , Xn$ are pairwise independent 
-	\\
-	\underline{Correlation: } $\rho(X, Y) = \frac{Cov(X, Y)}{\sqrt{Var(X)Var(Y)}} $ where $-1 \leq \rho(X,Y) \leq 1$
-	\\
-	\begin{tabular}{|c|c|c|}
-		\hline
-		Conditional Expectation & $E[X \vert Y = y] = \sum_{x}xp_{X \vert Y}(x, y)$ & $E[g(X) \vert Y = y] = \sum_{x}g(x)p_{X \vert Y}(x, y)$\\
-		\hline
-	\end{tabular}
-	\\
-	\begin{tabular}{|c|c|c|c|}
-		Conditioning Property & $E[X] = E[E[X \vert Y]]$ &
-		Expectation of X & $\sum_{y}E[X \vert Y = y]P\{Y = y\}$\\
-		\hline
-	\end{tabular}
-	\\
-	\begin{tabular}{|c|c|}
-		\hline
-		Conditional Variance & $Var(X \vert Y) = E[X^2 \vert Y] - (E[X \vert Y])^2$\\
-		\hline
-		Unconditional Variance of X given Y & $E[Var(X \vert Y)] = E[X^2] - E[(E[X \vert Y])^2]$\\
-		\hline
-		$Var(E[X \vert Y]) = E[(E[X \vert Y])^2] - (E[X])^2$ & $Var(X) = E[Var(X \vert Y)] + Var(E[X \vert Y])$\\
-	\end{tabular}
-	\\
-	\begin{tabular}{|c|c|c|}
-		\hline
-		General Form Predictor & $E[(Y - g(X))^2] \geq E[(Y - E[Y \vert X])^2]$ & best case is $g(X) = E[Y \vert X]$\\
-		\hline
-		Linear Predictor & $E[(Y - (a + bX))^2] \geq E[(Y - E[Y \vert X])^2]$ & $b = \rho\frac{\sigma_Y}{\sigma_X}$ and $a = E[Y] - bE[X]$\\
-		\hline
-	\end{tabular}
-	\\
-	\begin{tabular}{|c|c|}
-		\hline
-		MGF of PDF & $M(t) = E[e^{tX}] = \sum_{x}e^{tx}p(x)$\\
-		\hline
-		MGF of PMF & $M(t) = E[e^{tX}] = \int_{-\infty}^{\infty}e^{tx}f(x)dx$\\
-		\hline
-		More than 2 RV MGF & $M(t_1, ..., t_n) = E[e^{t_1x_1 + ... + t_nX_n}]$\\
-		\hline
-		Individual MGF & $M_{X_i}(t) = M(0,... , 0, t, 0,..., 0)$\\
-		\hline
-		Joint MGF & $M_{XY}(t, t') = E[e^{tX+T' Y}] = \sum_{y}\sum{x}e^{tx+t' y}p_{XY}(x,y)$ \\
-		\hline
-		MGF of IRV & $M_{X+Y}(t) = M_X(t)M_Y(t)$\\
-		\hline
-	\end{tabular}
-	\underline{Nth Moment: } $M^n(0) = E[X^n]$ $n \geq 0$
-	\\
-	Moment Generating Functions for Some RV
+	\begin{multicols}{2}[\section*{Properties of Expectation}]
+    Joint PMF: $E[g(X, Y)] = \sum_{y}\sum_{x}g(x, y)p(x, y)$\\
+	Joint PDF: $E[g(X, Y)] = \int_{-\infty}^{\infty}\int_{-\infty}^{\infty}g(x, y)p(x, y)dxdy$\\
+    $E[aX+ b] = aE[X] + b$\\
+    $E[g(X)h(Y)] = E[g(X)]E[h(Y)]$ if $X$ and $Y$ are independent\\
+    
+    \textbf{Covariance}:\\
+	$Cov(X, Y) = E[XY] - E[X]E[Y]$,  $Cov(X, Y)  = Cov(Y, X)$\\
+    $Cov(X, X) = Var(X)$,  $Cov(aX,aY) = aCov(X, Y)$\\ 	
+	$Cov(\sum_{i=1}^nX_i, \sum_{j=1}^mY_j) = \sum_{i=1}^n\sum_{j=1}^mCov(X_i,Y_j)$ \\
+	$Var(\sum_{i = 1}^nX_i) = \sum_{i = 1}^nVar(X_i) + \sum_{i = 1}^n\sum_{j \neq i}Cov(X_i, X_j)$\\
+	$Var(\sum_{i = 1}^nX_i) = \sum_{i = 1}^nVar(X_i)$ if $X_1,... , X_n$ are p.w. ind.\\
+    
+	\textbf{Correlation}: $\rho(X, Y) = \frac{Cov(X, Y)}{\sqrt{Var(X)Var(Y)}} $,  $-1 \leq \rho(X,Y) \leq 1$
+
+	\textbf{Conditional Expectation}:\\$E[X \vert Y = y] = \sum_{x}xp_{X \vert Y}(x, y)$\\$E[g(X) \vert Y = y] = \sum_{x}g(x)p_{X \vert Y}(x, y)$\\
+    
+    \textbf{Conditioning Property}: $E[X] = E[E[X \vert Y]]$\\
+    \textbf{Expectation of X}: $\sum_{y}E[X \vert Y = y]P\{Y = y\}$\\
+	
+    \textbf{Conditional Variance}: $Var(X \vert Y) = E[X^2 \vert Y] - (E[X \vert Y])^2$\\
+    \textbf{Uncond. var. of $X \vert Y$}: $E[Var(X \vert Y)] = E[X^2] - E[(E[X \vert Y])^2]$\\
+    $Var(E[X \vert Y]) = E[(E[X \vert Y])^2] - (E[X])^2$\\
+    $Var(X) = E[Var(X \vert Y)] + Var(E[X \vert Y])$\\
+    
+    \textbf{Predictors}:\\
+    General form: $E[(Y - g(X))^2] \geq E[(Y - E[Y \vert X])^2]$ (best case: $g(X) = E[Y \vert X]$)\\
+    Linear: $E[(Y - (a + bX))^2] \geq E[(Y - E[Y \vert X])^2]$, where $b = \rho\frac{\sigma_Y}{\sigma_X}$ and $a = E[Y] - bE[X]$\\
+    
+    \textbf{Moment Generating Functions}:\\
+    $n^{\text{th}}$ moment:  $M^n(0) = E[X^n]$ $n \geq 0$\\
+    MGF of PDF: $M(t) = E[e^{tX}] = \sum_{x}e^{tx}p(x)$\\
+    MGF of PMF: $M(t) = E[e^{tX}] = \int_{-\infty}^{\infty}e^{tx}f(x)dx$\\
+    More than 2 RV MGF: $M(t_1, ..., t_n) = E[e^{t_1x_1 + ... + t_nX_n}]$\\
+    Individual MGF: $M_{X_i}(t) = M(0,... , 0, t, 0,..., 0)$\\
+    Joint MGF: $M_{XY}(t, t') = E[e^{tX+T' Y}] = \sum_{y}\sum{x}e^{tx+t' y}p_{XY}(x,y)$ \\
+    MGF of sum of two IRVs: $M_{X+Y}(t) = M_X(t)M_Y(t)$\\
+    Common MGFs:\\
 	\begin{tabular}{|c|c|}
 		\hline
 		Binomial & $M(t) = (pe^t + 1 - p)^n$ \\
@@ -265,138 +213,100 @@
 		Normal & $M(t) = exp\{\frac{\sigma^2t^2}{2} + {\mu}t\}$\\
 		\hline
 	\end{tabular}
-	
-
-	\section*{Limit Theorems}
-	\underline{Markov's Inequality:} 
-	\\ If $X$ is a random variable that takes only nonnegative values, then for any value $a > 0$, $P\{X \geq a|\} \leq \frac{E[X]}{a}$
+    \end{multicols}
+	\begin{multicols}{2}[\section*{Limit Theorems}]
+	\textbf{Markov's Inequality}: If $X$ is a random variable that takes only nonnegative values, then for any value $a > 0$, $P\{X \geq a|\} \leq \frac{E[X]}{a}$\\
 	\\
-	\underline{Chebyshev's Inequality:}
-	\\ If $X$ is a random variable with finite mean $\mu$ and variance $\sigma^2$, then for any value $k > 0$, $P\{\vert X - \mu\vert \geq k\} \leq \frac{\sigma^2}{k^2}$
+	\textbf{Chebyshev's Inequality}: If $X$ is a random variable with finite mean $\mu$ and variance $\sigma^2$, then for any value $k > 0$, $P\{\vert X - \mu\vert \geq k\} \leq \frac{\sigma^2}{k^2}$
+	\\\\
+	\textbf{The Weak Law of Large Numbers}: 
+	Let $X_1, X_2, ...$ be a sequence of iid Random variables, each having finite mean. Then, for any $\epsilon > 0$, $P\{\vert\bar{X} - \mu\vert \geq \epsilon\} \to 0$ where $\bar{X} = \frac{X_1 + X_2 + ... + X_n}{n}$  as $n\to\infty$\\
 	\\
-	\underline{The Weak Law of Large Numbers}
-	\\
-	Let $X_1, X_2, ...$ be a sequence of iid Random variables, each having finite mean. Then, for any $\epsilon > 0$, $P\{\vert\bar{X} - \mu\vert \geq \epsilon\} \to 0$ where $\bar{X} = \frac{X_1 + X_2 + ... + X_n}{n}$  as $n\to\infty$
-	\\
-	\underline{The Central Limit Theorem}
-	\\
+	\textbf{The Central Limit Theorem}:
 	Let $X_1, X_2,...$ be a sequence of iid random variables, each having mean and variance. Then, the distribution of $Z = \frac{X_1 + ... + X_n - n\mu}{\sigma\sqrt{n}}$ tends to the standard normal as $n\to\infty$. That is, for $-\infty < a < \infty$, $P\{Z \leq a\} = \phi(a) \to N(0,1)$ as $n\to\infty$
 %	\underline{CLT for Independent Random Variables}
 %	\\
 %	Let $X_1, X_2, ...$ be a sequence of independent random variables having respective means and variances $\mu = E[X_i]$, $\sigma_i^2 = Var(X_i)$. If (a) the $X_i$ are uniformly bounded; that is, if for some $M$, $P\{\vert X_i\vert < M\} = 1$ for all $i$, and (b) $\sum_{i = 0}^{\infty}\sigma_i^2 = \infty$, then $P\{\frac{\sum_{i = 1}^n(X_i -\mu_i)}{\sqrt{\sum_{i = 1}^n\sigma_i^2}}\} \to \phi(a)$ as $n \to \infty$.
 	
+	\end{multicols}
 	
+	\begin{multicols}{2}[\section*{Random Processes}]
+	\textbf{Random Processes}: a collection of random variables usually indexed by time\\
+	\textbf{Sample Function}: the time function  $x(t, s)$ associated with the outcome $s$ of an experiment\\
+	\textbf{Ensemble}: the set of all possible time function that can result from an experiment\\
+	\textbf{Random Sequence}: a random sequence $X_n$ is an ordered sequence of random variables $X_0, X_1, ...$\\
+    
+	\textbf{Bernoulli Process}: $X(t)$ is a sequence of Bernoulli trials; trials are independent of each other ($P\{X_n = 1\} = p = 1 - P\{X_n = 0\}$)
 	
-	\section*{Random Processes}
-	\underline{Definitions}
+	\textbf{Counting Process}: Given a stochastic process $N(t)$:\\
+    $N(0) = 0$, $N(t) \in \{0, 1, 2,...\}$ for all $t \in [0, \infty)$\\
+    for $0 < s < t$, $N(t) - N(s)$ shows the \# of events in $(s,t]$.\\
+    \end{multicols}
+    
+	\textbf{Poisson Process}: Given $\lambda > 0$ , a counting process $N(t), t \in [0, \infty)$ is called a Poisson process with rate $\lambda$ if the following conditions hold:\\
+    $\to N(0) = 0$\\
+    $\to$ $N(t)$ has \underline{independent} and \underline{stationary} increments \\ 
+	$\to$ The \# of arrivals in any interval of length $\tau > 0$ has $Pois(\lambda\tau)$ distribution\\
+	\begin{multicols}{2}
+    PMF of $M = N(t_1) - N(t_0)$:\\
+    $p_M(m) = \begin{cases} \frac{\vert\lambda \vert(t_1 - t_0)\vert^m}{m!}e^{-\lambda(t_1 - t_0} & m = 0, 1... \\ 0 &  \text{otherwise} \\ \end{cases}$\\\\
+    
+    Joint PMF of $N(t_1), ..., N(t_k)$, $t_1 < t_2 < ... < t_k$:\\
+    $p_{N(t_1), ..., N(t_k)}(n_1, .., n_k)\\ = \begin{cases} \frac{\alpha_1^{n_1}e^{-\alpha_1}}{n_1!}\frac{\alpha_1^{n_2 - n_1}e^{-\alpha_2}}{(n_2 - n_1)!}...\frac{\alpha_k^{n_k- n_{k - 1}}e^{-\alpha_k}}{(n_k - n_{k-1})!} & m = 0, 1..., \alpha_i = \lambda(t_i - t_{i - 1}).\\ 0 &  \text{otherwise}\\ \end{cases}$
+    \end{multicols}
+	For a Poisson process of rate $\lambda$, the inter-arrival times $X_1, X_2, ...$ are an iid random sequence with the exponential PDF. \\
 	\\
-	\underline{Random Processes:} a collection of random variables usually indexed by time
+	$P\{X_n - x' > x \vert X_n > x'\} = P\{X_n > x\} = e^{-\lambda x}$ (P.P. is memoryless)  
 	\\
-	\underline{Sample Function:} the time function  $x(t, s)$ associated with the outcome of $s$ of an experiment
+	A counting process with \textbf{independent exponential inter-arrivals} $X_1, X_2, ...$ with mean $E[X_i] = 1/\lambda$ is a Poisson process of rate $\lambda$
 	\\
-	\underline{Ensemble:} the set of all possible time function that can result from an experiment
+	
+    \textbf{Brownian Motion Process}: continuous-time, continuous-value process. $X(0) = 0$ and for $\tau > 0, X(t + \tau) - X(t)$ is a Gaussian random variable with mean 0 and variance $\alpha\tau$ independent of $X(t')$ for all $t' \leq t$:\\
+    $X(t + \delta) = X(t)  +  [X(t + \delta) - X(t)]$\\
+    PDF of $Y_{\delta}$: $P_{Y_{\delta}}(y) = \frac{1}{\sqrt{2\pi\alpha\delta}}e^{-y^2/2\alpha\delta}$\\
+    Joint PDF: $f_{X(t_1),... ,  X(t_k)}(x_1, ..., x_k) = \prod_{i = 1}^k \frac{1}{\sqrt{2\pi\alpha(t_n - t_{n_1})}}e^{-(x_n - x_{n_1})^2/2\alpha(t_n - t_{n_1})}$\\
 	\\
-	\underline{Random Sequence:} A random sequence $X_n$ is an ordered sequence of random variables $X_0, X_1, ...$ 
-	\\
-	\\
-	\underline{Processes}
-	\\
-	\underline{Bernoulli Process:} $X(t)$ is a sequence of Bernoulli trials; trials are independent of each other
-	\\
-	$P\{X_n = 1\} = p = 1 - P\{X_n = 0\}$
-	\\
-	\underline{Counting Process} Given a stochiastic process $N(t)$
-	\\
-	\begin{tabular}{|c|c|c|}
-		\hline 
-		$N(0) = 0$ &
-		$N(t) \in \{0, 1, 2,...\}$ for all $t \in [0, \infty)$ &
-		for $0 < s < t$, $N(t) - N(s)$ shows the no. of events in $(s,t]$.\\
-		\hline
-	\end{tabular}
-	\\
-	\underline{Poisson Process} Given $\lambda > 0$ , A counting process $N(t), t \in [0, \infty)$ is called a Poisson Process with rate $\lambda$ if the following conditions hold:
-	\\
-	\begin{tabular}{|c|}
-		\hline $\to N(0) = 0$ \\ 
-		$\to$ $N(t)$ has \underline{independent} and \underline{stationary} increments \\ 
-		$\to$ The number of arrivals in any interval of length $\tau > 0$ has $poisson(\lambda\tau)$ distribution\\
-		\hline
-	\end{tabular}
-	\\
-	PMF and Joint PMF
-	\\
-	\begin{tabular}{|c|c|}
-		\hline
-		PMF of $M = N(t_1) - N(t_0)$ &
-		$p_M(m) = \begin{cases} \frac{\vert\lambda \vert(t_1 - t_0)\vert^m}{m!}e^{-\lambda(t_1 - t_0} & m = 0, 1... \\ 0 &  \text{otherwise} \\ \end{cases}$ \\
-		\hline
-		Joint PMF of $N(t_1), ..., N(t_k),$ & \\  $t_1 < t_2 < ... < t_k$ &
-		$p_{N(t_1), ..., N(t_k)}(n_1, .., n_k) = \begin{cases} \frac{\alpha_1^{n_1}e^{-\alpha_1}}{n_1!}\frac{\alpha_1^{n_2 - n_1}e^{-\alpha_2}}{(n_2 - n_1)!}...\frac{\alpha_k^{n_k- n_{k - 1}}e^{-\alpha_k}}{(n_k - n_{k-1})!} & m = 0, 1..., \alpha_i = \lambda(t_i - t_{i - 1}).\\ 0 &  \text{otherwise}\\ \end{cases}$\\
-		\hline
-	\end{tabular}
-	\\
-	\underline{Theorem:} For a Poisson process of rate $\lambda$, the inter-arrival times $X_1, X_2, ...$ are an iid random sequence with the exponential PDF. 
-	\\
-	\underline{Memoryless Property of the Poisson Process: } $P\{X_n - x' > x \vert X_n > x'\} = P\{X_n > x\} = e^{-\lambda x}$  
-	\\
-	\underline{Theorem:} A counting process with independent exponential inter-arrivals $X_1, X_2, ...$ with mean $E[X_i] = 1/\lambda$ is a Poisson process of rate $\lambda$
-	\\
-	\underline{Brownian Motion Process: } A continuous time, continuous value process. Has the property that $X(0) = 0$ and for $\tau > 0, X(t + \tau) - X(t)$ is a Gaussian random variable with mean 0 and variance $\alpha\tau$ that is independent of $X(t')$ for all $t' \leq t$ 
-	\\
-	\begin{tabular}{|c|c|}
-		\hline
-		Brownian Motion & $X(t + \delta) = X(t)  +  [X(t + \delta) - X(t)]$\\
-		\hline
-		PDF of $Y_{\delta}$ & $P_{Y_{\delta}}(y) = \frac{1}{\sqrt{2\pi\alpha\delta}}e^{-y^2/2\alpha\delta}$\\
-		\hline
-		Joint PDF & $f_{X(t_1),... ,  X(t_k)}(x_1, ..., x_k) = \prod_{i = 1}^k \frac{1}{\sqrt{2\pi\alpha(t_n - t_{n_1})}}e^{-(x_n - x_{n_1})^2/2\alpha(t_n - t_{n_1})}$\\
-		\hline
-	\end{tabular}
-	\\
+    \vspace{-1.5em}
+    \begin{vwcol}[widths={0.63}, sep=.4cm, justify=flush,rule=0pt]
+    \textbf{General Properties}:\\
 	\begin{tabular}{|c|c|c|}
 		\hline
-		$$ & Random Process & Random Sequence \\
+		Random & Process & Sequence \\
 		\hline
-		Expected Value of a process & $\mu_X(t) = E[X(t)]$ & $$ \\
+		EV & $\mu_X(t) = E[X(t)]$ & n/a \\
 		\hline
-		Autocovariance & $C_X(t, \tau) = Cov(X(t), X(t + \tau))$ &  $C_X[m, k] = Cov[X_m, X_{m_k}]$\\
+		Autocov. & $C_X(t, \tau) = Cov(X(t), X(t + \tau))$ &  $C_X[m, k] = Cov[X_m, X_{m_k}]$\\
 		\hline
-		Autocorrelation & $R_X(t, \tau) = E[X(t)X(t + \tau)]$ & $R_X[m, k] = E[X_m, X_{m_k}]$\\
+		Autocor. & $R_X(t, \tau) = E[X(t)X(t + \tau)]$ & $R_X[m, k] = E[X_m, X_{m_k}]$\\
 		\hline
 	\end{tabular}
-	\\
-	\underline{Theorem: } $C_X(t, \tau) = R_X(t, \tau) -\mu_X(t)\mu_X(t + \tau)$
-	\\
-	\underline{Stationary Process: } A random process X(t0 is stationary if and only if for all sets of time constants $t_, ... , t_m$ and any time difference $\tau$,  $f_{X(t_1),... ,  X(t_k)}(x_1, ..., x_k) = f_{X(t_1 +\tau),... ,  X(t_k + \tau)}(x_1, ..., x_k)$
-	\\
-	\underline{Stationary Sequence: } $f_{X_{n_1},... ,  X_{n_m}}(x_1, ..., x_m) = f_{X_{n_1 + k},... ,  X_{n_m +k}}(x_1, ..., x_m)$
-	\\
-	\underline{Stationary Properties}
+    \\
+    \textbf{Stationary Properties}:\\
 	\begin{tabular}{|c|c|c|}
 		\hline
-		$$ & Random Process & Random Sequence \\
+		Random & Process & Sequence \\
 		\hline
-		Expected Value & $\mu_X(t) = \mu_X$ & $E[X_m] = \mu_X$ \\
+		EV & $\mu_X(t) = \mu_X$ & $E[X_m] = \mu_X$ \\
 		\hline
-		Autocovariance & $C_X(t, \tau) = R_X(\tau) - \mu_X^2) = C_X(\tau)$ &  $C_X[m, k] = R_X(\tau) - \mu_X^2$\\
+		Autocov. & $C_X(t, \tau) = R_X(\tau) - \mu_X^2 = C_X(\tau)$ &  $C_X[m, k] = R_X(\tau) - \mu_X^2$\\
 		\hline
-		Autocorrelation & $R_X(t, \tau) = R_X(0, \tau) = R_X(\tau)]$ & $R_X[m, k] = R_X[0, k] = R_X[k]$\\
+		Autocor. & $R_X(t, \tau) = R_X(0, \tau) = R_X(\tau)$ & $R_X[m, k] = R_X[0, k] = R_X[k]$\\
 		\hline
 	\end{tabular}
-	\\
-	\underline{Wides Sense Stationary Properties}
+	\\\textbf{WSS Properties}:\\
 	\begin{tabular}{|c|c|c|}
 		\hline
-		$$ & Random Process & Random Sequence \\
+		Random & Process & Sequence \\
 		\hline
-		Expected Value & $E[X(t)] = \mu_X$ & $E[X_n] = \mu_X$ \\
+		EV & $E[X(t)] = \mu_X$ & $E[X_n] = \mu_X$ \\
 		\hline
-		Autocorrelation & $R_X(t, \tau) = R_X(0, \tau) = R_X(\tau)]$ & $R_X[n, k] = R_X[0, k] = R_X[k]$\\
+		Autocor. & $R_X(t, \tau) = R_X(0, \tau) = R_X(\tau)]$ & $R_X[n, k] = R_X[0, k] = R_X[k]$\\
 		\hline
-	\end{tabular}
+	\end{tabular}\\
+	\textbf{Stationary Process}: A random process X(t0 is stationary if and only if for all sets of time constants $t_, ... , t_m$ and any time difference $\tau$,  $f_{X(t_1),... ,  X(t_k)}(x_1, ..., x_k) = f_{X(t_1 +\tau),... ,  X(t_k + \tau)}(x_1, ..., x_k)$
 	\\
-	\underline{If $(X(t)$/$X_n$ is WSSP/WSRS}
+	\textbf{Stationary Sequence}: $f_{X_{n_1},... ,  X_{n_m}}(x_1, ..., x_m) = f_{X_{n_1 + k},... ,  X_{n_m +k}}(x_1, ..., x_m)$\\
+	If $(X(t)$/$X_n$ is WSSP/WSRS:\\
 	\begin{tabular}{|c|c|}
 		\hline
 		Processes & $R_X(0) \geq 0$ \\ & $R_X(\tau) = R_X(-\tau)$ \\ & $\vert R_X(\tau) \vert \leq R_X(0)$ \\
@@ -407,77 +317,81 @@
 		Sequences & $R_X(0) \geq 0$ \\ & $R_X(k) = R_X(-k)$ \\ & $\vert R_X(k) \vert \leq R_X(0)$ \\
 		\hline  
 	\end{tabular}
+    \end{vwcol}
+	\begin{multicols}{2}
+    $C_X(t, \tau) = R_X(t, \tau) -\mu_X(t)\mu_X(t + \tau)$\\
+	\textbf{Average Power of WSSP}: $R_X(0) = E[X^2(t)]$
+	\end{multicols}
+	\begin{multicols}{2}[\section*{Random Signal Processing}]
+	\textbf{LTI Filter Output:} For $X(t)$ input to a LTI filter with impulse response $h(t)$, the output $Y(t)$ is the convolution of the input $X(t)$ with $h(t)$\\
 	\\
-	\underline{Average Power:} The average power of a WSSP $X(t)$ is $R_X(0) = E[X^2(t)]$
-	\section*{Random Signal Processing}
-	\underline{LTI Filter Output Process:} $X(t)$ is the input to a LTI filter and $Y(t)$ is the output. $Y(t)$ is the convolution of the sample function $X(t)$ with the impulse response $h(t)$
+	If the input to LTI filter with impulse response $h(t)$ is WSSP $X(t)$, then WSSP output $Y(t)$ has the following: $\mu_Y = \mu_XH(0)$ (mean)\\ $R_Y(\tau) = \int_{-\infty}^{\infty}h(u)\int_{-\infty}^{\infty}h(v)R_X(\tau + u - v)dvdu$ (auto-correl.)\\ \\
+	\textbf{Power Spectral Density:} For a WSSP $X(t)$, $R_X(\tau)$ and the power spectral density $S_X(f)$ are Fourier transform pairs:\\$S_X(f) = \mathcal{F}\{R_X(\tau)\}$\\$R_X(\tau) = \mathcal{F}^{-1}\{S_X(f)\}$\\ $S_X(f) \geq 0$ for all $f$\\
+
+	\textbf{Properties of $S_X(f)$}:\\
+    $E[X^2(t)] = \int_{-\infty}{\infty}S_X(f)df$, $S_X(f) = S_X(-f)$\\
+    $S_Y(f) = S_X(f) \vert H(f) \vert^2$ where $H$ is the input response\\
+	
+    \textbf{Independent Processes}: If $X(t)$ $Y(t)$ are independent for any time sample of $t_1, .., t_n,$ and $t_1', ..., t_m'$, then:
 	\\
-	\underline{Theorem:} If the input to LTI filter with impulse response is WSSP $X(t)$, then WSSP Output $Y(t)$ has the following
+	$f_{X(t_1), ..., X(t_n), Y(t_1'), ..., Y(t_m' )}(x_1, ..., x_n, y_1, ..., y_m$\\$ = f_{X(t_1), ...,X(t_n)}(x_1, ..., x_n,)f_{Y(t_1'), ...,Y(t_m' )}(y_1, ..., y_m)$
 	\\
-	 \begin{tabular}{|c|c|c|c|}
-		\hline
-		Mean Value & $\mu_Y = \mu_XH(0)$ & Autocorrelation Function & $R_Y(\tau) = \int_{-\infty}^{\infty}h(u)\int_{-\infty}^{\infty}h(v)R_X(\tau + u - v)dvdu$\\
-		\hline  
-	\end{tabular}
+	\textbf{Cross Correlation Func}: $R_{XY}(t, \tau) = E[(X(t)Y(t + \tau)]$
 	\\
-	\underline{Power Spectral Density:} For a WSSP $X(t)$, $R_X(\tau)$ and the power spectral density $S_X(f)$ are Fourier transform pairs
-	\begin{tabular}{|c|c|c|}
-		\hline
-		$S_X(f) = \mathcal{F}\{R_X(\tau)\}$ & $R_X(\tau) = \mathcal{F}^{-1}\{S_X(f)\}$ & $S_X(f) \geq 0$ for all $f$\\
-		\hline
-	\end{tabular}
+	\textbf{Jointly WSSP}: $R_{XY}(t, t + \tau) = R_{XY}(\tau)$ and $R_{XY}(\tau) = R_{XY}(-\tau)$
 	\\
-	\underline{Properties of $S_X(f)$}
-	\begin{tabular}{|c|c|c|}
-		\hline
-		$E[X^2(t)] = \int_{-\infty}{\infty}S_X(f)df$ & $S_X(f) = S_X(-f)$ & $S_Y(f) = S_X(f) \vert H(f) \vert^2 \text{  where H is the input response}$\\
-		\hline
-	\end{tabular}
-	\underline{Independent Processes:} $X(t)$ $Y(t)$ are independent for any time sample of $t_1, .., t_n,$ and $t_1', ..., t_m'$, 
+	\textbf{Cross Spectral Density}: $S_{XY}(f) = \mathcal{F}\{R_{XY}(\tau)\}$
 	\\
-	$f_{X(t_1), ...,X(t_n),Y(t_1'), ...,Y(t_m' )}(x_1, ..., x_n, y_1, ..., y_m) = f_{X(t_1), ...,X(t_n)}(x_1, ..., x_n,)f_{Y(t_1'), ...,Y(t_m' )}(y_1, ..., y_m)$
+	\textbf{Input-Output Cross Correlation}: When a WSSP $X(t)$ is the input to a LTI filter $h(t)$, the input-output cross correlation is $R_{XY}(t, t + \tau) = R_{XY}(\tau) = \int_{-\infty}^{\infty}h(u)R_X(\tau - u)du$. Both $X(t)$ and $Y(t)$ are jointly wide sense stationary.
 	\\
-	\underline{Cross Correlation Function:} $R_{XY}(t, \tau) = E[(X(t)Y(t + \tau)]$
+	\textbf{Output Autocorrelation}: When a wide stationary process $X(t)$ is the input to a LTI filter $h(t)$, the autocorrelation of the output $Y(t)$ is $R_Y(\tau) = \int_{-\infty}^{\infty}h(-w)R_{XY}(\tau - w)dw$.
 	\\
-	\underline{Jointly WSSP: } $R_{XY}(t, t + \tau) = R_{XY}(\tau)$ and $R_{XY}(\tau) = R_{XY}(-\tau)$
+	\textbf{Cross Spectral Properties}: Let $X(t)$ be a WSS input to a LTI filter $H(f)$. The input $X(t)$ and output $Y(t)$ satisfy:\\
+    $S_{XY}(f) = H(f)S_X(f)$, and\\
+    $S_Y(f) = H(f)S_{XY}(f)$
+   	\end{multicols}
+	\textbf{Gaussian Process}: $X(t)$ is a Gaussian random process if the joint PDF of $X(t_1,), ..., X(t_k)$ has the multivariate Gaussian density $f_{X(t_1), ... X(t_k)} = \frac{1}{(2\pi)^{k/2}\vert C\vert^{1/2}}\text{exp}\{-\frac{1}{2}(X - \mu x)^{\tau}C^{-1}(X - \mu x)\}$
 	\\
-	\underline{Cross Spectral Density:} $S_{XY}(f) = \mathcal{F}\{R_{XY}(\tau)\}$
+    If $X(t)$ is WSS Gaussian process, then $X(t)$ is a stationary Gaussian process.\\
+	$X(t)$ is a Gaussian RV if $Y = \int_{0}^Tg(t)X(t)dt$ is a Gaussian random variable for every $g(t)$ such that $E[Y^2] < \infty$.\\
+    \textbf{Properties of Gaussian Processes}: Passing a stationary Gaussian process $X(t)$ through a linear filter $h(t)$ yields as the output Gaussian random process $Y(t)$ with the following properties.\\
+    Mean: $\mu_Y = \mu_XH(0)$\\
+    Autocorrelation: $R_Y(\tau) = \int_{-\infty}^{\infty}h(u)\int_{-\infty}^{\infty}h(v)R_X(\tau + u - v)dvdu$\\
+    
+    \vspace{-1em}
+	\begin{multicols}{2}
+	\textbf{White Gaussian Noise Processes}: Noise is modeled as stationary Gaussian random process $W(t)$, with no DC component.\\
+	$E[W(t_t1)] = \mu_W = 0$\\ $R_W(\tau) = 0$ if $\tau \neq 0$
 	\\
-	\underline{Input-Output Cross Correlation:} When a WSSP $X(t)$ is the input to a LTI filter $h(t)$, the input-output cross correlation is $R_{XY}(t, t + \tau) = R_{XY}(\tau) = \int_{-\infty}^{\infty}h(u)R_X(\tau - u)du$. Both $X(t)$ and $Y(t)$ are jointly wide sense stationary.
-	\\
-	\underline{Output Autocorrelation:} When a wide stationary process $X(t)$ is the input to a LTI filter $h(t)$, the autocorrelation of the output $Y(t)$ is $R_Y(\tau) = \int_{-\infty}^{\infty}h(-w)R_{XY}(\tau - w)dw$.
-	\\
-	\underline{Cross Spectral Properties:} Let $X(t)$ be a WSS input to a LTI filter $H(f)$. The input $X(t)$ and output $Y(t)$ satisfy
-	\\
-	\begin{tabular}{|c|c|} 
-		\hline
-		$S_{XY}(f) = H(f)S_X(f)$ & $S_Y(f) = H(f)S_{XY}(f)$ \\
-		\hline
-	\end{tabular}
-	\\
-	\underline{Gaussian Process:} $X(t)$ is a Gaussian random process if the joint PDF of $X(t_1,), ..., X(t_k)$ has the multivariate Gaussian density $f_{X(t_1), ... X(t_k)} = \frac{1}{(2\pi)^{k/2}\vert C\vert^{1/2}}\text{exp}\{-\frac{1}{2}(X - \mu x)^{\tau}C^{-1}(X - \mu x)\}$
-	\\
-	\underline{Theorem:} If $X(t)$ is WSS Gaussian process, then $X(t)$ is a stationary Gaussian processs.
-	\underline{Theorem:} $X(t)$ is a Gaussian RV if $Y = \int_{0}^Tg(t)X(t)dt$ is a Gaussian random variable for every $g(t)$ such that $E[Y^2] < \infty$.
-	\\
-	\underline{Properties of Gaussian Process:} Passing a stationary Gaussian process $X(t)$ through a linear filter $h(t)$ yields as the output Gaussian random process $Y(t)$ with the following properties,
-	\\
-	\begin{tabular}{|c|c|c|c|}
-		\hline
-		Mean & $\mu_Y = \mu_XH(0)$ & Autocorrelation & $R_Y(\tau) = \int_{-\infty}^{\infty}h(u)\int_{-\infty}^{\infty}h(v)R_X(\tau + u - v)dvdu$\\
-		\hline
-	\end{tabular}
-	\\
-	\underline{White Gaussian Noise Processes}
-	\\
-	Noise is an unpredictable waveform that we model as stationary Gaussian random process $W(t)$. Noise has no DC component.
-	$E[W(t_t1)] = \mu_W = 0$ and $R_W(\tau) = 0$.
-	\\
-	\underline{Power Spectral Density of $W(t)$}
+	\textbf{Power Spectral Density of $W(t)$}:
 	$S_W(f)$ is constant. The constant is 0 unless $R_W(\tau) = \frac{N_0}{2}\delta(\tau)$. $N_0$ is the the power per unit bandwidth of $W(t)$. 
 	\\
-	\underline{Average Noise Power:} $E[W^2(t)] = R_W(0) = \infty$
+	\textbf{Average Noise Power}: $E[W^2(t)] = R_W(0) = \infty$
 	\\
-	\underline{Noise process output:} $Y(t) = \int_{0}^th(t - \tau)W(\tau)d\tau = \text{ Constant}$
-	
+	\textbf{Noise process output}: $Y(t) = \int_{0}^th(t - \tau)W(\tau)d\tau = $ Constant
+	\end{multicols}
+    
+    \begin{multicols}{3}[\section*{Random Helpful Stuff}]
+    Don't panic.\\
+    $\frac{1}{1-x} = \sum^\infty_{n=0} x^n\quad\text{ for }|x| < 1\!$\\
+    $\sin \alpha \sin \beta = \frac{1}{2}[\cos( \alpha - \beta) - \cos( \alpha + \beta)]$\\
+    $\cos \alpha \cos \beta = \frac{1}{2}[\cos( \alpha - \beta) + \cos( \alpha + \beta)]$\\
+    $\sin \alpha \cos \beta = \frac{1}{2}[\sin( \alpha + \beta) + \sin( \alpha - \beta)]$\\
+    $\int u \, dv=uv-\int v \, du.\!$\\
+    $\Gamma \left( a \right) = \int\limits_0^\infty {x^{a - 1} } e^{ - x} dx$\\
+    $\Gamma \left(n \right) = (n - 1)!$ if $n \in \textbf{Z}^{+}$
+	\end{multicols}
+
+    \begin{multicols}{2}[\section*{Fourier Transforms}]
+		\begin{align*}
+            X(j \omega)=\int_{-\infty}^\infty x(t) e^{-j \omega t}d t & \Leftrightarrow x(t)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} X(j \omega)e^{j \omega t}d \omega\\
+            e^{-a|t|}, \Re\{a\}>0 & \Leftrightarrow \frac{2a}{a^2 + \omega^2}\\
+            \cos (\omega_0 t + \theta) & \Leftrightarrow \pi \left[ e^{-j \theta}\delta(\omega+\omega_0)+e^{j \theta}\delta(\omega-\omega_0) \right]\\
+		\end{align*}
+        \begin{align*}
+            1 & \Leftrightarrow 2\pi\delta(\omega)\\
+            -0.5 + u(t) & \Leftrightarrow \frac{1}{j \omega}\\
+            \sin (\omega_0 t + \theta) & \Leftrightarrow j \pi \left[ e^{-j \theta}\delta(\omega +\omega_0)-e^{j \theta}\delta(\omega-\omega_0) \right]
+        \end{align*}
+\end{multicols}
 \end{document}
