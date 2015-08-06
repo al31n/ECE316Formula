@@ -61,7 +61,7 @@
 		\hline
 		$Geom(p)$ & $P\{X = n\} = p(1-p)^{n-1}, n= 0, 1, 2, ...$ & $\frac{1}{p}$ & $\frac{1-p}{p^2}$\\
 		\hline
-		$Pois(\lambda)$ & $P\{X = n\} = e^{\lambda}\frac{\lambda^n}{n!}, n = 0, 1,...$ & $\lambda$ & $\lambda$ \\
+		$Pois(\lambda)$ & $P\{X = n\} = e^{-\lambda}\frac{\lambda^n}{n!}, n = 0, 1,...$ & $\lambda$ & $\lambda$ \\
 		\hline
 		$NBin(r, p)$ & $P\{X = r\} = \binom{n - 1}{r - 1}p^r(1- p)^{n-r}, n = r, r + 1, ... $ & $\frac{r}{p}$ & $r\frac{(1 - p)}{p^2}$\\
 		\hline
@@ -303,7 +303,7 @@ g\vspace{-3em}
 		Autocor. & $R_X(t, \tau) = R_X(0, \tau) = R_X(\tau)]$ & $R_X[n, k] = R_X[0, k] = R_X[k]$\\
 		\hline
 	\end{tabular}\\
-	\textbf{Stationary Process}: A random process X(t0 is stationary if and only if for all sets of time constants $t_, ... , t_m$ and any time difference $\tau$,  $f_{X(t_1),... ,  X(t_k)}(x_1, ..., x_k) = f_{X(t_1 +\tau),... ,  X(t_k + \tau)}(x_1, ..., x_k)$
+	\textbf{Stationary Process}: A random process X(t) is stationary if and only if for all sets of time constants $t_, ... , t_m$ and any time difference $\tau$,  $f_{X(t_1),... ,  X(t_k)}(x_1, ..., x_k) = f_{X(t_1 +\tau),... ,  X(t_k + \tau)}(x_1, ..., x_k)$
 	\\
 	\textbf{Stationary Sequence}: $f_{X_{n_1},... ,  X_{n_m}}(x_1, ..., x_m) = f_{X_{n_1 + k},... ,  X_{n_m +k}}(x_1, ..., x_m)$\\
 	If $(X(t)$/$X_n$ is WSSP/WSRS:\\
@@ -387,6 +387,7 @@ g\vspace{-3em}
             X(j \omega)=\int_{-\infty}^\infty x(t) e^{-j \omega t}d t & \Leftrightarrow x(t)=\frac{1}{2 \pi} \int_{-\infty}^{\infty} X(j \omega)e^{j \omega t}d \omega\\
             e^{-a|t|}, \Re\{a\}>0 & \Leftrightarrow \frac{2a}{a^2 + \omega^2}\\
             \cos (\omega_0 t + \theta) & \Leftrightarrow \pi \left[ e^{-j \theta}\delta(\omega+\omega_0)+e^{j \theta}\delta(\omega-\omega_0) \right]\\
+            e^{-\alpha t} \Leftrightarrow  \frac{1}{\alpha + j\omega}\\
 		\end{align*}
         \begin{align*}
             1 & \Leftrightarrow 2\pi\delta(\omega)\\
