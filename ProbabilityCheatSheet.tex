@@ -85,7 +85,7 @@
 		\hline
 		$Uni(a, b)$ 
 			& $f(x) = \begin{cases} \frac{1}{b - a} & \text{if } a < x < b \\  0 & \text{othewrise}\end{cases}$  
-			& $F(x) = \begin{cases} 0 & x \leq a \\ \frac{x -a}{b -a} & \text{if } a < x < b \\ 1 & x \geq a \end{cases} $
+			& $F(x) = \begin{cases} 0 & x \leq a \\ \frac{x -a}{b -a} & \text{if } a < x < b \\ 1 & x \geq b \end{cases} $
 			& $\frac{a + b}{2}$ 
 			& $\frac{(b - a)^2}{12}$\\
 		\hline
@@ -264,7 +264,7 @@ g\vspace{-3em}
     \textbf{Brownian Motion Process}: continuous-time, continuous-value process. $X(0) = 0$ and for $\tau > 0, X(t + \tau) - X(t)$ is a Gaussian random variable with mean 0 and variance $\alpha\tau$ independent of $X(t')$ for all $t' \leq t$:\\
     $X(t + \delta) = X(t)  +  [X(t + \delta) - X(t)]$\\
     PDF of $Y_{\delta}$: $P_{Y_{\delta}}(y) = \frac{1}{\sqrt{2\pi\alpha\delta}}e^{-y^2/2\alpha\delta}$\\
-    Joint PDF: $f_{X(t_1),... ,  X(t_k)}(x_1, ..., x_k) = \prod_{i = 1}^k \frac{1}{\sqrt{2\pi\alpha(t_n - t_{n_1})}}e^{-(x_n - x_{n_1})^2/2\alpha(t_n - t_{n_1})}$\\
+    Joint PDF: $f_{X(t_1),... ,  X(t_k)}(x_1, ..., x_k) = \prod_{i = 1}^k \frac{1}{\sqrt{2\pi\alpha(t_n - t_{n-1})}}e^{-(x_n - x_{n-1})^2/2\alpha(t_n - t_{n-1})}$\\
 	\\
     \vspace{-1.5em}
     \begin{vwcol}[widths={0.63}, sep=.4cm, justify=flush,rule=0pt]
@@ -275,9 +275,9 @@ g\vspace{-3em}
 		\hline
 		EV & $\mu_X(t) = E[X(t)]$ & n/a \\
 		\hline
-		Autocov. & $C_X(t, \tau) = Cov(X(t), X(t + \tau))$ &  $C_X[m, k] = Cov[X_m, X_{m_k}]$\\
+		Autocov. & $C_X(t, \tau) = Cov(X(t), X(t + \tau))$ &  $C_X[m, k] = Cov[X_m, X_{m+k}]$\\
 		\hline
-		Autocor. & $R_X(t, \tau) = E[X(t)X(t + \tau)]$ & $R_X[m, k] = E[X_m, X_{m_k}]$\\
+		Autocor. & $R_X(t, \tau) = E[X(t)X(t + \tau)]$ & $R_X[m, k] = E[X_m, X_{m+k}]$\\
 		\hline
 	\end{tabular}
     \\
@@ -298,9 +298,9 @@ g\vspace{-3em}
 		\hline
 		Random & Process & Sequence \\
 		\hline
-		EV & $E[X(t)] = \mu_X$ & $E[X_n] = \mu_X$ \\
+		EV & $E[X(t)] = \mu_X$ & $E[X_m] = \mu_X$ \\
 		\hline
-		Autocor. & $R_X(t, \tau) = R_X(0, \tau) = R_X(\tau)]$ & $R_X[n, k] = R_X[0, k] = R_X[k]$\\
+		Autocor. & $R_X(t, \tau) = R_X(0, \tau) = R_X(\tau)]$ & $R_X[m, k] = R_X[0, k] = R_X[k]$\\
 		\hline
 	\end{tabular}\\
 	\textbf{Stationary Process}: A random process X(t) is stationary if and only if for all sets of time constants $t_, ... , t_m$ and any time difference $\tau$,  $f_{X(t_1),... ,  X(t_k)}(x_1, ..., x_k) = f_{X(t_1 +\tau),... ,  X(t_k + \tau)}(x_1, ..., x_k)$
@@ -329,7 +329,7 @@ g\vspace{-3em}
 	\textbf{Power Spectral Density:} For a WSSP $X(t)$, $R_X(\tau)$ and the power spectral density $S_X(f)$ are Fourier transform pairs:\\$S_X(f) = \mathcal{F}\{R_X(\tau)\}$\\$R_X(\tau) = \mathcal{F}^{-1}\{S_X(f)\}$\\ $S_X(f) \geq 0$ for all $f$\\
 
 	\textbf{Properties of $S_X(f)$}:\\
-    $E[X^2(t)] = \int_{-\infty}{\infty}S_X(f)df$, $S_X(f) = S_X(-f)$\\
+    $E[X^2(t)] = \int_{-\infty}^{\infty}S_X(f)df$, $S_X(f) = S_X(-f)$\\
     $S_Y(f) = S_X(f) \vert H(f) \vert^2$ where $H$ is the input response\\
 	
     \textbf{Independent Processes}: If $X(t)$ $Y(t)$ are independent for any time sample of $t_1, .., t_n,$ and $t_1', ..., t_m'$, then:
